@@ -1,0 +1,28 @@
+var mysql = require('mysql'); 
+
+var con = mysql.createConnection({
+	host :'localhost',
+	user: 'root',
+	password :'123456',
+	database:'testdb'
+});
+
+con.connect();
+
+// var addDB = 'CREATE DATABASE testdb' 
+
+// var addTab = 'CREATE TABLE test(in1 int, in2 varchar(255))';
+
+var addTab = 'CREATE TABLE Person(Personid int, Name varchar(255), Url varchar(255), Alexa varchar(255), Country varchar(255))';
+
+var addSql = 'INSERT INTO Person( Personid, Name, Url, Alexa, Country) VALUES(0, ?, ?, ?, ?)';
+
+var addSqlParams = ['王晓辉', 'www.baidu.com', '123456', 'CN'];
+
+var sel = 'SELECT * FROM Person';
+
+con.query(sel,  function (error, results, fields) {
+	if (error) throw error;
+	console.log(results);
+})
+
